@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>麒麟城堡第20期 - 新街邹里队公益相册</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-red: #E53935;
+            --primary-orange: #FF6B35;
+            --primary-yellow: #FFD23F;
+            --primary-green: #7CB342;
+            --primary-blue: #2196F3;
+            --primary-purple: #9C27B0;
+            --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --card-shadow: 0 10px 40px rgba(0,0,0,0.15);
+        }
+
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* 动态背景 */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .bg-animation::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(255, 107, 53, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(125, 179, 66, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(33, 150, 243, 0.1) 0%, transparent 40%);
+            animation: bgFloat 20s ease-in-out infinite;
+        }
+
+        @keyframes bgFloat {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(-2%, 2%) rotate(1deg); }
+            66% { transform: translate(2%, -2%) rotate(-1deg); }
+        }
+
+        /* 浮动装饰元素 */
+        .floating-shapes {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .shape {
+            position: absolute;
+            opacity: 0.08;
+            animation: float 15s ease-in-out infinite;
+        }
+
+        .shape:nth-child(1) {
+            top: 10%;
+            left: 10%;
+            width: 80px;
+            height: 80px;
+            background: var(--primary-red);
+            border-radius: 50%;
+            animation-delay: 0s;
+        }
+
+        .shape:nth-child(2) {
+            top: 60%;
+            right: 10%;
+            width: 120px;
+            height: 120px;
+            background: var(--primary-yellow);
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            animation-delay: -5s;
+        }
+
+        .shape:nth-child(3) {
+            bottom: 20%;
+            left: 20%;
+            width: 60px;
+            height: 60px;
+            background: var(--primary-green);
+            transform: rotate(45deg);
+            animation-delay: -10s;
+        }
+
+        .shape:nth-child(4) {
+            top: 30%;
+            right: 30%;
+            width: 100px;
+            height: 100px;
+            background: var(--primary-blue);
+            border-radius: 50%;
+            animation-delay: -7s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(10deg); }
+        }
+
+        /* 头部区域 */
+        header {
+            background: linear-gradient(135deg, var(--primary-red) 0%, #FF6B6B 100%);
+            padding: 40px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 30px rgba(229, 57, 53, 0.3);
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(255,255,255,0.03) 10px,
+                rgba(255,255,255,0.03) 20px
+            );
+            animation: headerPattern 20s linear infinite;
+        }
+
+        @keyframes headerPattern {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        .logo-container {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logo {
+            width: 120px;
+            height: 120px;
+            background: white;
+            border-radius: 50%;
+            padding: 10px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+            animation: logoPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes logoPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .title-section {
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            color: white;
+            font-size: 2.5rem;
+            font-weight: 900;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+
+        .subtitle {
+            color: rgba(255,255,255,0.95);
+            font-size: 1.2rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .subtitle span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .heart {
+            color: #FFD700;
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            25% { transform: scale(1.2); }
+            50% { transform: scale(1); }
+            75% { transform: scale(1.15); }
+        }
+
+        .tagline {
+            margin-top: 15px;
+            padding: 8px 24px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 30px;
+            color: white;
+            font-size: 1rem;
+            font-weight: 500;
+            backdrop-filter: blur(10px);
+            display: inline-block;
+        }
+
+        /* 导航栏 */
+        nav {
+            background: white;
+            padding: 15px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding-bottom: 5px;
+            scrollbar-width: thin;
+            scrollbar-color: var(--primary-red) transparent;
+        }
+
+        .nav-container::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .nav-container::-webkit-scrollbar-thumb {
+            background: var(--primary-red);
+            border-radius: 3px;
+        }
+
+        .nav-btn {
+            padding: 10px 20px;
+            border: none;
+            background: #f5f5f5;
+            border-radius: 25px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: #555;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-btn:hover, .nav-btn.active {
+            background: var(--primary-red);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(229, 57, 53, 0.3);
+        }
+
+        .nav-btn .icon {
+            font-size: 1.1rem;
+        }
+
+        /* 主内容区 */
+        main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .section {
+            display: none;
+            animation: fadeInUp 0.6s ease;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .section-title .emoji {
+            font-size: 2.2rem;
+        }
+
+        .section-desc {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        /* 照片网格 */
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .photo-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            position: relative;
+        }
+
+        .photo-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, var(--primary-red) 0%, var(--primary-orange) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1;
+            border-radius: 20px;
+        }
+
+        .photo-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+        }
+
+        .photo-card:hover::before {
+            opacity: 0.05;
+        }
+
+        .photo-wrapper {
+            position: relative;
+            padding-top: 75%;
+            overflow: hidden;
+            background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
+        }
+
+        .photo-wrapper img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .photo-card:hover .photo-wrapper img {
+            transform: scale(1.1);
+        }
+
+        .photo-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 50%);
+            display: flex;
+            align-items: flex-end;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .photo-card:hover .photo-overlay {
+            opacity: 1;
+        }
+
+        .view-btn {
+            background: white;
+            color: var(--primary-red);
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+        }
+
+        .photo-card:hover .view-btn {
+            transform: translateY(0);
+        }
+
+        /* 灯箱 */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .lightbox.active {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+        }
+
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 85vh;
+            border-radius: 10px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            background: white;
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: #333;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox-close:hover {
+            background: var(--primary-red);
+            color: white;
+            transform: rotate(90deg);
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: #333;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox-nav:hover {
+            background: var(--primary-red);
+            color: white;
+        }
+
+        .lightbox-prev { left: -70px; }
+        .lightbox-next { right: -70px; }
+
+        .lightbox-counter {
+            position: absolute;
+            bottom: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 1rem;
+            background: rgba(255,255,255,0.2);
+            padding: 8px 20px;
+            border-radius: 20px;
+        }
+
+        /* 页脚 */
+        footer {
+            background: linear-gradient(135deg, #333 0%, #555 100%);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            width: 80px;
+            height: 80px;
+            background: white;
+            border-radius: 50%;
+            padding: 8px;
+            margin: 0 auto 20px;
+        }
+
+        .footer-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .footer-text {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .footer-slogan {
+            color: var(--primary-yellow);
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-top: 15px;
+        }
+
+        .copyright {
+            margin-top: 20px;
+            color: rgba(255,255,255,0.6);
+            font-size: 0.9rem;
+        }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .subtitle {
+                font-size: 1rem;
+            }
+
+            .logo {
+                width: 90px;
+                height: 90px;
+            }
+
+            .photo-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 15px;
+            }
+
+            .lightbox-prev { left: 10px; }
+            .lightbox-next { right: 10px; }
+        }
+
+        /* 加载动画 */
+        .loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 200px;
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid var(--primary-red);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* 统计信息 */
+        .stats-bar {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            margin-bottom: 40px;
+            box-shadow: var(--card-shadow);
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--primary-red) 0%, var(--primary-orange) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 0.95rem;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 动态背景 -->
+    <div class="bg-animation"></div>
+    
+    <!-- 浮动装饰 -->
+    <div class="floating-shapes">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+
+    <!-- 头部 -->
+    <header>
+        <div class="logo-container">
+            <div class="logo">
+                <img src="logo.png" alt="麒麟城堡Logo">
+            </div>
+            <div class="title-section">
+                <h1>麒麟城堡第20期</h1>
+                <div class="subtitle">
+                    <span>🏰 新街邹里队</span>
+                    <span class="heart">❤️</span>
+                    <span>公益支教</span>
+                </div>
+                <div class="tagline">用爱心点亮希望，用知识点亮未来</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 导航 -->
+    <nav>
+        <div class="nav-container">
+            <button class="nav-btn active" data-section="all">
+                <span class="icon">📸</span>全部照片
+            </button>
+            <button class="nav-btn" data-section="opening">
+                <span class="icon">🎉</span>开营仪式
+            </button>
+            <button class="nav-btn" data-section="class">
+                <span class="icon">📚</span>趣味课堂
+            </button>
+            <button class="nav-btn" data-section="homework">
+                <span class="icon">✏️</span>作业辅导
+            </button>
+            <button class="nav-btn" data-section="sports">
+                <span class="icon">🏃</span>阳光体育
+            </button>
+            <button class="nav-btn" data-section="activity">
+                <span class="icon">🎪</span>游园会
+            </button>
+            <button class="nav-btn" data-section="drill">
+                <span class="icon">🛡️</span>防震演练
+            </button>
+            <button class="nav-btn" data-section="closing">
+                <span class="icon">🏆</span>结营仪式
+            </button>
+            <button class="nav-btn" data-section="team">
+                <span class="icon">👥</span>团队建设
+            </button>
+            <button class="nav-btn" data-section="group">
+                <span class="icon">📷</span>大合照
+            </button>
+        </div>
+    </nav>
+
+    <!-- 主内容 -->
+    <main>
+        <!-- 统计信息 -->
+        <div class="stats-bar">
+            <div class="stat-item">
+                <div class="stat-number" id="totalPhotos">0</div>
+                <div class="stat-label">精彩瞬间</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">13</div>
+                <div class="stat-label">活动天数</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">∞</div>
+                <div class="stat-label">爱心传递</div>
+            </div>
+        </div>
+
+        <!-- 全部照片 -->
+        <section class="section active" id="all">
+            <div class="section-header">
+                <h2 class="section-title"><span class="emoji">📸</span>全部精彩瞬间</h2>
+                <p class="section-desc">记录每一个温暖时刻，珍藏每一份美好回忆</p>
+            </div>
+            <div class="photo-grid" id="allGrid"></div>
+        </section>
+
+        <!-- 开营仪式 -->
+        <section class="section" id="opening">
+            <div class="section-header">
+                <h2 class="section-title"><span class="emoji">🎉</span>开营仪式</h2>
+                <p class="section-desc">梦想起航，爱心启程</p>
+            </div>
+            <div class="photo-grid" id="openingGrid"></div>
+        </section>
+
+        <!-- 趣味课堂 -->
+        <section class="section" id="class">
+            <div class="section-header">
+                <h2 class="section-title"><span class="emoji">📚</span>趣味课堂</h2>
+                <p class="section-desc">寓教于乐，快乐学习</p>
+            </div>
+            <div class="photo-grid" id="classGrid"></div>
+        </section>
+
+        <!-- 作业辅导 -->
+        <section class="section" id="homework">
+            <div class="section-header">
+                <h2 class="section-title"><span class="emoji">✏️</span>作业辅导</h2>
+                <p class="section-desc">耐心指导，助力成长</p>
+            </div>
+            <div class="photo-grid" id="homeworkGrid"></div>
+        </section>
+
+        <!-- 阳光体育 -->
+        <section class="section" id="sports">
+            <div class="section-header">
+                <h2 class="section-title"><span class="emoji">🏃</span>阳光体育</h2>
+                <p class="section-desc">活力四射，健康成长</p>
+            </div>
+            <div class="photo-grid" id="sportsGrid"></div>
+        </section>
+
+        <!-- 游园会 -->
+        <section class="section" id="activity">
+            <div class="section-header">
+                <h2 class="section-title"><span class="emoji">🎪</span>游园会</h2>
+                <p class="section-desc">欢乐时光，童心飞扬</p>
+            </div>
+            <div class="photo-grid" id="activityGrid"></div>
+        </section>
+
+        <!-- 防震演练 -->
+        <section class="section" id="drill">
+            <div class="section-header">
+                <h2 class="section-title"><span class="emoji">🛡️</span>防震演练</h2>
+                <p class="section-desc">安全第一，防患未然</p>
+            </div>
+            <div class="photo-grid" id="drillGrid"></div>
+        </section>
+
+        <!-- 结营仪式 -->
+        <section class="section" id="closing">
+            <div class="section-header">
+                <h2 class="section-title"><span class="emoji">🏆</span>结营仪式</h2>
+                <p class="section-desc">收获成长，展望未来</p>
+            </div>
+            <div class="photo-grid" id="closingGrid"></div>
+        </section>
+
+        <!-- 团队建设 -->
+        <section class="section" id="team">
+            <div class="section-header">
+                <h2 class="section-title"><span class="emoji">👥</span>团队建设</h2>
+                <p class="section-desc">团结一心，共创辉煌</p>
+            </div>
+            <div class="photo-grid" id="teamGrid"></div>
+        </section>
+
+        <!-- 大合照 -->
+        <section class="section" id="group">
+            <div class="section-header">
+                <h2 class="section-title"><span class="emoji">📷</span>大合照</h2>
+                <p class="section-desc">定格美好，珍藏永恒</p>
+            </div>
+            <div class="photo-grid" id="groupGrid"></div>
+        </section>
+    </main>
+
+    <!-- 灯箱 -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+            <button class="lightbox-nav lightbox-prev" onclick="prevImage()">◀</button>
+            <img src="" alt="" id="lightboxImg">
+            <button class="lightbox-nav lightbox-next" onclick="nextImage()">▶</button>
+            <div class="lightbox-counter" id="lightboxCounter">1 / 10</div>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="logo.png" alt="麒麟城堡Logo">
+            </div>
+            <p class="footer-text">麒麟城堡第20期 · 新街邹里队</p>
+            <p class="footer-slogan">❤️ 用爱心点亮希望，用知识点亮未来 ❤️</p>
+            <p class="copyright">© 2025 麒麟城堡公益团队 版权所有</p>
+        </div>
+    </footer>
+
+    <script>
+        // 照片数据配置
+        const photoData = {
+            opening: {
+                folder: '开营仪式',
+                photos: [
+                    'IMG_20250722_090128.jpg', 'IMG_20250722_090137.jpg', 'IMG_20250722_090256.jpg',
+                    'IMG_20250722_094631.jpg', 'IMG_20250722_094712.jpg', 'IMG_20250722_094723.jpg',
+                    'IMG_20250722_095402.jpg', 'IMG_20250722_095404.jpg'
+                ]
+            },
+            class: {
+                folder: '趣味课堂照片',
+                photos: [
+                    '1754536753211_21b0a599-1dad-4862-aba2-606ca0bfdfb6.jpg',
+                    'IMG_20250722_144405.jpg', 'IMG_20250723_091417.jpg', 'IMG_20250723_144301.jpg',
+                    'IMG_20250723_144325.jpg', 'IMG_20250724_091359.jpg', 'IMG_20250724_091933.jpg',
+                    'IMG_20250725_145414.jpg', 'IMG_20250725_145445.jpg', 'IMG_20250725_145620.jpg',
+                    'IMG_20250728_091405.jpg', 'IMG_20250730_145156.jpg',
+                    'mmexport1754464656593.jpg', 'mmexport1754465483875.jpg',
+                    'retouch_2025072809191313.jpg'
+                ]
+            },
+            homework: {
+                folder: '作业辅导',
+                photos: [
+                    'IMG_20250722_090802.jpg', 'IMG_20250725_094342.jpg',
+                    'mmexport1754108211910.jpg', 'mmexport1754464252182.jpg'
+                ]
+            },
+            sports: {
+                folder: '阳光体育视频',
+                photos: [] // 视频文件夹，暂无照片
+            },
+            activity: {
+                folder: '游园会照片',
+                photos: [
+                    'IMG_20250728_131410.jpg', 'IMG_20250728_133701.jpg', 'IMG_20250728_133714.jpg',
+                    'IMG_20250728_134420.jpg', 'IMG_20250728_140312.jpg', 'IMG_20250728_140357.jpg'
+                ]
+            },
+            drill: {
+                folder: '防震演练',
+                photos: [
+                    'IMG_20250724_100744.jpg', 'IMG_20250724_100746.jpg'
+                ]
+            },
+            closing: {
+                folder: '结营仪式',
+                photos: [
+                    'IMG_20250803_091843.jpg', 'IMG_20250803_094415.jpg', 'IMG_20250803_095645.jpg',
+                    'IMG_20250803_100032.jpg', 'IMG_20250803_100427.jpg', 'IMG_20250803_100431.jpg',
+                    'IMG_20250803_100433.jpg'
+                ]
+            },
+            team: {
+                folder: '团队建设',
+                photos: [
+                    'IMG_20250727_160608.jpg', 'IMG_20250727_160632.jpg', 'IMG_20250727_161349.jpg',
+                    'IMG_20250727_161351.jpg', 'IMG_20250727_165923.jpg', 'mmexport1753611785812.jpg'
+                ]
+            },
+            group: {
+                folder: '大合照',
+                photos: [
+                    'IMG_20250725_103030.jpg', 'IMG_20250725_104509.jpg', 'IMG_20250728_134336.jpg',
+                    'IMG_20250803_091528.jpg', 'mmexport1754148383711.jpg',
+                    'retouch_2025073009255390.jpg', 'retouch_2025073010162490.jpg',
+                    'retouch_2025080223282525.jpg', 'retouch_2025080317415985.jpg'
+                ]
+            }
+        };
+
+        let currentImages = [];
+        let currentIndex = 0;
+
+        // 初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            loadAllPhotos();
+            setupNavigation();
+            updateTotalCount();
+        });
+
+        // 加载所有照片
+        function loadAllPhotos() {
+            const allPhotos = [];
+            
+            for (const [key, data] of Object.entries(photoData)) {
+                if (data.photos.length > 0) {
+                    const grid = document.getElementById(key + 'Grid');
+                    if (grid) {
+                        data.photos.forEach(photo => {
+                            const photoPath = `photos/${data.folder}/${photo}`;
+                            allPhotos.push({ path: photoPath, category: key });
+                            grid.appendChild(createPhotoCard(photoPath));
+                        });
+                    }
+                }
+            }
+
+            // 加载全部照片
+            const allGrid = document.getElementById('allGrid');
+            allPhotos.forEach(photo => {
+                allGrid.appendChild(createPhotoCard(photo.path));
+            });
+
+            currentImages = allPhotos.map(p => p.path);
+        }
+
+        // 创建照片卡片
+        function createPhotoCard(photoPath) {
+            const card = document.createElement('div');
+            card.className = 'photo-card';
+            card.innerHTML = `
+                <div class="photo-wrapper">
+                    <img src="${photoPath}" alt="照片" loading="lazy" onerror="this.style.display='none'">
+                    <div class="photo-overlay">
+                        <div class="view-btn">👁 查看大图</div>
+                    </div>
+                </div>
+            `;
+            card.onclick = () => openLightbox(photoPath);
+            return card;
+        }
+
+        // 设置导航
+        function setupNavigation() {
+            const navBtns = document.querySelectorAll('.nav-btn');
+            const sections = document.querySelectorAll('.section');
+
+            navBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const targetSection = this.dataset.section;
+
+                    // 更新按钮状态
+                    navBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+
+                    // 更新内容区域
+                    sections.forEach(s => s.classList.remove('active'));
+                    document.getElementById(targetSection).classList.add('active');
+
+                    // 更新当前图片列表
+                    updateCurrentImages(targetSection);
+                });
+            });
+        }
+
+        // 更新当前图片列表
+        function updateCurrentImages(section) {
+            if (section === 'all') {
+                currentImages = [];
+                for (const [key, data] of Object.entries(photoData)) {
+                    data.photos.forEach(photo => {
+                        currentImages.push(`photos/${data.folder}/${photo}`);
+                    });
+                }
+            } else if (photoData[section]) {
+                const data = photoData[section];
+                currentImages = data.photos.map(photo => `photos/${data.folder}/${photo}`);
+            }
+        }
+
+        // 更新总数
+        function updateTotalCount() {
+            let total = 0;
+            for (const data of Object.values(photoData)) {
+                total += data.photos.length;
+            }
+            document.getElementById('totalPhotos').textContent = total;
+        }
+
+        // 打开灯箱
+        function openLightbox(src) {
+            currentIndex = currentImages.indexOf(src);
+            if (currentIndex === -1) currentIndex = 0;
+
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightboxImg');
+            
+            lightboxImg.src = src;
+            lightbox.classList.add('active');
+            updateCounter();
+            document.body.style.overflow = 'hidden';
+        }
+
+        // 关闭灯箱
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // 上一张
+        function prevImage() {
+            currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
+            document.getElementById('lightboxImg').src = currentImages[currentIndex];
+            updateCounter();
+        }
+
+        // 下一张
+        function nextImage() {
+            currentIndex = (currentIndex + 1) % currentImages.length;
+            document.getElementById('lightboxImg').src = currentImages[currentIndex];
+            updateCounter();
+        }
+
+        // 更新计数器
+        function updateCounter() {
+            document.getElementById('lightboxCounter').textContent = 
+                `${currentIndex + 1} / ${currentImages.length}`;
+        }
+
+        // 键盘导航
+        document.addEventListener('keydown', function(e) {
+            if (!document.getElementById('lightbox').classList.contains('active')) return;
+            
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') prevImage();
+            if (e.key === 'ArrowRight') nextImage();
+        });
+
+        // 点击背景关闭
+        document.getElementById('lightbox').addEventListener('click', function(e) {
+            if (e.target === this) closeLightbox();
+        });
+    </script>
+</body>
+</html>
